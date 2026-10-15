@@ -29,13 +29,10 @@ def get_transforms(train: bool):
         return v2.Compose([to_float, v2.Normalize(MEAN, STD)])
 
     return v2.Compose([
-        v2.RandomResizedCrop(TRAIN_CROP, scale=(0.5, 1.0), ratio=(1.2, 1.5),
-                             antialias=True),
+        v2.RandomResizedCrop(TRAIN_CROP, scale=(0.5, 1.0), ratio=(1.2, 1.5), antialias=True),
         v2.RandomHorizontalFlip(p=0.5),
-        v2.RandomApply([v2.RandomAffine(
-            degrees=10,
-            fill={tv_tensors.Image: 0, tv_tensors.Mask: IGNORE_INDEX},
-        )], p=0.3),
+        v2.RandomApply([v2.RandomAffine(degrees=10, fill={tv_tensors.Image: 0, 
+                                                          tv_tensors.Mask: IGNORE_INDEX},)], p=0.3),
         v2.ColorJitter(brightness=0.3, contrast=0.3, saturation=0.3),
         to_float,
         v2.Normalize(MEAN, STD),

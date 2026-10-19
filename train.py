@@ -26,7 +26,6 @@ OUT_DIR = Path("runs")
 
 
 def parse_args():
-    """Флаги — только то, что меняется между экспериментами."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--train", choices=["lastlayer", "head", "full"], required=True,
                     help="какая часть модели обучается")
@@ -59,10 +58,10 @@ def default_name(args):
     return "_".join(parts)
 
 
-# ---------- что обучается ----------
+
 
 def setup_trainable(model, args):
-    out_params = list(model.head.parameters())            # classifier[4]
+    out_params = list(model.head.parameters())           
     out_ids = {id(p) for p in out_params}
     for p in model.parameters():
         p.requires_grad = args.train == "full"
@@ -76,29 +75,28 @@ def setup_trainable(model, args):
         head_params = list(model.net.classifier.parameters())
         for p in head_params:
             p.requires_grad = True
-        if args.head_init == "scratch":                    # вся голова новая — один LR
+        if args.head_init == "scratch":                  
             return [{"params": head_params, "lr": LR_NEW}]
         aspp = [p for p in head_params if id(p) not in out_ids]
         return [{"params": aspp, "lr": args.lr_pretrained},
                 {"params": out_params, "lr": LR_NEW}]
 
-    rest = [p for p in model.parameters() if id(p) not in out_ids]   # full
+    rest = [p for p in model.parameters() if id(p) not in out_ids]  
     return [{"params": rest, "lr": args.lr_pretrained},
             {"params": out_params, "lr": LR_NEW}]
 
 
 def set_train_mode(model, args):
     if args.train == "lastlayer":
-        model.eval()                       # всё заморожено: BN и Dropout фиксированы
+        model.eval()                     
         return
     if args.train == "head":
-        model.eval()                       # энкодер: BN заморожены
-        model.net.classifier.train()       # голова: BN и Dropout в режиме обучения
+        model.eval()                       
+        model.net.classifier.train()     
         return
     model.train()
 
 
-# ---------- функция потерь ----------
 
 def class_weights():
     """Median frequency balancing (SegNet): w_c = median(freq) / freq_c,

@@ -95,7 +95,6 @@ def main():
     for c, v in sorted(zip(CLASSES, m["iou"]), key=lambda t: t[1]):
         print(f"  {c:11s} {v:.3f}")
 
-    # частые путаницы: доля GT-пикселей класса, ушедших в другой класс
     cmn = cm.double() / cm.sum(1, keepdim=True).clamp(min=1)
     off = cmn.clone()
     off.fill_diagonal_(0)
@@ -108,7 +107,6 @@ def main():
     print(f"\nГраницы (±3 px): {100*band_px/valid_px:.1f}% пикселей, "
           f"но {100*err_in_band/max(err_total,1):.1f}% всех ошибок")
 
-    # confusion matrix
     fig, ax = plt.subplots(figsize=(8, 7))
     im = ax.imshow(cmn.numpy(), cmap="Blues", vmin=0, vmax=1)
     ax.set_xticks(range(NUM_CLASSES))
@@ -128,7 +126,6 @@ def main():
     fig.savefig(out / "confusion.png", dpi=110)
     plt.close(fig)
 
-    # худшие кадры
     per_image.sort()
     groups = [
         ("worst", "Худшие", per_image[:args.worst]),

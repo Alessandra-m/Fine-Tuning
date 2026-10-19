@@ -1,0 +1,19 @@
+[prune_r0.3_full_ce_lovasz] параметров: 18.95M, обучаемых: 18.9494M
+[prune_r0.3_full_ce_lovasz] ep   1/15  loss 0.4439  mIoU 0.7385  23.9s  1527MB
+[prune_r0.3_full_ce_lovasz] ep   2/15  loss 0.3958  mIoU 0.7323  16.9s  1529MB
+[prune_r0.3_full_ce_lovasz] ep   3/15  loss 0.3756  mIoU 0.7524  17.0s  1530MB
+[prune_r0.3_full_ce_lovasz] ep   4/15  loss 0.3631  mIoU 0.7569  16.7s  1529MB
+[prune_r0.3_full_ce_lovasz] ep   5/15  loss 0.3563  mIoU 0.7537  16.7s  1528MB
+[prune_r0.3_full_ce_lovasz] ep   6/15  loss 0.3470  mIoU 0.7655  16.7s  1527MB
+[prune_r0.3_full_ce_lovasz] ep   7/15  loss 0.3420  mIoU 0.7545  16.7s  1529MB
+[prune_r0.3_full_ce_lovasz] ep   8/15  loss 0.3322  mIoU 0.7596  16.7s  1527MB
+[prune_r0.3_full_ce_lovasz] ep   9/15  loss 0.3323  mIoU 0.7657  16.7s  1526MB
+[prune_r0.3_full_ce_lovasz] ep  10/15  loss 0.3249  mIoU 0.7702  16.7s  1528MB
+[prune_r0.3_full_ce_lovasz] ep  11/15  loss 0.3225  mIoU 0.7694  16.8s  1529MB
+[prune_r0.3_full_ce_lovasz] ep  12/15  loss 0.3074  mIoU 0.7714  16.7s  1527MB
+[prune_r0.3_full_ce_lovasz] ep  13/15  loss 0.3149  mIoU 0.7692  16.7s  1528MB
+[prune_r0.3_full_ce_lovasz] ep  14/15  loss 0.3085  mIoU 0.7696  16.7s  1529MB
+[prune_r0.3_full_ce_lovasz] ep  15/15  loss 0.3083  mIoU 0.7712  16.7s  1529MB
+
+[prune_r0.3_full_ce_lovasz] лучший mIoU 0.7714 (эпоха 12)
+Сохранено в runs/prune_r0.3_full_ce_lovasz/

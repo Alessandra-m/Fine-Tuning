@@ -6,7 +6,9 @@ import numpy as np
 import torch
 from torch.utils.flop_counter import FlopCounterMode
 
-INPUT_SIZE = (360, 480)  
+INPUT_SIZE = (360, 480)    
+WARMUP = 20
+ITERS = 100
 
 
 def count_params(model):
@@ -21,12 +23,12 @@ def count_gmacs(model, device, input_size=INPUT_SIZE):
     x = torch.randn(1, 3, *input_size, device=device)
     with FlopCounterMode(display=False) as fc:
         model(x)
-    return fc.get_total_flops() / 2 / 1e9  # FLOPs = 2 * MACs
+    return fc.get_total_flops() / 2 / 1e9    
 
 
 @torch.no_grad()
 def measure_latency(model, device, input_size=INPUT_SIZE, amp=False,
-                    warmup=20, iters=100):
+                    warmup=WARMUP, iters=ITERS):
     model.eval()
     x = torch.randn(1, 3, *input_size, device=device)
     use_amp = amp and device.type == "cuda"
@@ -58,7 +60,6 @@ def measure_latency(model, device, input_size=INPUT_SIZE, amp=False,
 
 @torch.no_grad()
 def measure_infer_memory(model, device, input_size=INPUT_SIZE, amp=False):
-    """Пиковая память инференса (веса + активации), МБ."""
     if device.type != "cuda":
         return None
     model.eval()
@@ -71,7 +72,7 @@ def measure_infer_memory(model, device, input_size=INPUT_SIZE, amp=False):
     return torch.cuda.max_memory_allocated() / 2 ** 20
 
 
-def benchmark(model, device, input_size=INPUT_SIZE, iters=100):
+def benchmark(model, device, input_size=INPUT_SIZE, iters=ITERS):
     torch.backends.cudnn.benchmark = True
     model = model.to(device).eval()
     total, _ = count_params(model)
@@ -90,13 +91,18 @@ def benchmark(model, device, input_size=INPUT_SIZE, iters=100):
     }
 
 
-if __name__ == "__main__":
-    from seg_utils import load_model
+def main():
+    from seg_utils import get_device, load_model
 
     ap = argparse.ArgumentParser()
-    ap.add_argument("ckpt")
-    ap.add_argument("--iters", type=int, default=100)
+    ap.add_argument("ckpt", help="best.pt (state_dict) или pruned.pt / best_model.pt (модель целиком)")
+    ap.add_argument("--iters", type=int, default=ITERS)
     args = ap.parse_args()
-    dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    res = benchmark(load_model(args.ckpt, dev), dev, iters=args.iters)
+
+    device = get_device()
+    res = benchmark(load_model(args.ckpt, device), device, iters=args.iters)
     print(json.dumps(res, indent=2, ensure_ascii=False))
+
+
+if __name__ == "__main__":
+    main()

@@ -2,7 +2,8 @@ import csv
 import json
 from pathlib import Path
 
-COLS = [
+RUNS_DIR = Path("runs")
+COLS = [  
     ("name", "Эксперимент", "{}"),
     ("trainable_params_M", "Обуч. парам., M", "{:.3f}"),
     ("best_miou", "mIoU (лучший)", "{:.4f}"),
@@ -19,27 +20,32 @@ COLS = [
 ]
 
 
-def main(root="runs"):
+def fmt(run, key, f):
+    return f.format(run[key]) if run.get(key) is not None else "—"
+
+
+def main():
     runs = []
-    for p in sorted(Path(root).glob("*/summary.json")):
+    for p in sorted(RUNS_DIR.glob("*/summary.json")):
         r = json.loads(p.read_text())
-        r["name"] = p.parent.name     
+        r["name"] = p.parent.name          
         runs.append(r)
     if not runs:
-        print(f"нет {root}/*/summary.json")
+        print(f"нет {RUNS_DIR}/*/summary.json")
         return
-    fmt = lambda r, key, f: f.format(r[key]) if r.get(key) is not None else "—"
+
     print("| " + " | ".join(c[1] for c in COLS) + " |")
     print("|" + "---|" * len(COLS))
     for r in runs:
         print("| " + " | ".join(fmt(r, k, f) for k, _, f in COLS) + " |")
 
-    with open(Path(root) / "results.csv", "w", newline="") as f:
+    out = RUNS_DIR / "results.csv"
+    with open(out, "w", newline="") as f:
         w = csv.writer(f)
         w.writerow([c[0] for c in COLS])
         for r in runs:
             w.writerow([r.get(k) for k, _, _ in COLS])
-    print(f"\nСохранено: {root}/results.csv")
+    print(f"\nСохранено: {out}")
 
 
 if __name__ == "__main__":

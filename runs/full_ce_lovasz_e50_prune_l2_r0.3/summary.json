@@ -1,0 +1,24 @@
+{
+  "ratio": 0.3,
+  "base": "runs/full_ce_lovasz_e50/best.pt",
+  "before": {
+    "miou_val": 0.7759526200739263,
+    "miou_test": 0.6951678359153909
+  },
+  "after_prune": {
+    "miou_val": 0.09096241773915392,
+    "miou_test": 0.07589385791052025
+  },
+  "params_M": 18.949395,
+  "gmacs": 51.445792832,
+  "latency_fp32_ms": 22.85975933074951,
+  "latency_fp32_p90_ms": 23.356560516357423,
+  "latency_fp16_ms": 14.23198413848877,
+  "latency_fp16_p90_ms": 14.262374305725098,
+  "infer_mem_fp32_MB": 967.94140625,
+  "input_size": [
+    360,
+    480
+  ],
+  "device": "NVIDIA GeForce RTX 3050"
+}

@@ -6,9 +6,13 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
+RUNS_DIR = Path("runs")
+FIG_PATH = Path("reports/figures/curves.png")
+DEFAULT_RUNS = ["lastlayer_ce_e50", "head_scratch_ce_e50", "full_ce_e50", "full_ce_lovasz_e50"]
+
 
 def read_history(name):
-    with open(Path("runs") / name / "history.csv") as f:
+    with open(RUNS_DIR / name / "history.csv") as f:
         rows = list(csv.DictReader(f))
     ep = [int(r["epoch"]) for r in rows]
     loss = [float(r["train_loss"]) for r in rows]
@@ -31,11 +35,10 @@ def main(names):
         ax.grid(alpha=0.3)
         ax.legend()
     fig.tight_layout()
-    Path("result").mkdir(exist_ok=True)
-    fig.savefig("result/curves.png", dpi=110)
-    print("Сохранено: result/curves.png")
+    FIG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(FIG_PATH, dpi=110)
+    print(f"Сохранено: {FIG_PATH}")
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:] or ["full_ce_lovasz_e50", "head_scratch_ce_e50",
-                          "lastlayer_ce_e50", "full_ce_e50"])
+    main(sys.argv[1:] or DEFAULT_RUNS)

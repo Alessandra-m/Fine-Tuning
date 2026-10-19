@@ -1,10 +1,9 @@
 import argparse
 
 import torch
-from torch.utils.data import DataLoader
 
-from camvid import CLASSES, NUM_CLASSES, CamVid, get_transforms
-from seg_utils import load_model, metrics_from_cm, update_cm
+from camvid import CLASSES, NUM_CLASSES, make_loader
+from seg_utils import get_device, load_model, metrics_from_cm, update_cm
 
 
 @torch.no_grad()
@@ -27,15 +26,14 @@ def main():
     ap.add_argument("--split", default="val", choices=["val", "test"])
     args = ap.parse_args()
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = get_device()
     model = load_model(args.ckpt, device).eval()
-    ds = CamVid(split=args.split, transforms=get_transforms(train=False))
-    dl = DataLoader(ds, batch_size=4, shuffle=False, num_workers=4, pin_memory=True)
+    dl = make_loader(args.split)
 
     base = run(model, dl, device, tta=False)
     flip = run(model, dl, device, tta=True)
 
-    print(f"{args.ckpt}  [{args.split}, {len(ds)} кадров]")
+    print(f"{args.ckpt}  [{args.split}, {len(dl.dataset)} кадров]")
     print(f"  без TTA:  mIoU {base['miou']:.4f}  pixel acc {base['pixel_acc']:.4f}")
     print(f"  flip-TTA: mIoU {flip['miou']:.4f}  pixel acc {flip['pixel_acc']:.4f}  "
           f"(Δ {flip['miou'] - base['miou']:+.4f})")

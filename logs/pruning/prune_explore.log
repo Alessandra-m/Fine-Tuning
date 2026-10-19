@@ -1,0 +1,53 @@
+layer1[0].conv1: 4 зависимостей
+
+--------------------------------
+          Pruning Group
+--------------------------------
+[0] prune_out_channels on net.backbone.layer1.0.conv1 (Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)) => prune_out_channels on net.backbone.layer1.0.conv1 (Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)), len(idxs)=1
+[1] prune_out_channels on net.backbone.layer1.0.conv1 (Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)) => prune_out_channels on net.backbone.layer1.0.bn1 (BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)), len(idxs)=1
+[2] prune_out_channels on net.backbone.layer1.0.bn1 (BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)) => prune_out_channels on _ElementWiseOp_46(ReluBackward0), len(idxs)=1
+[3] prune_out_channels on _ElementWiseOp_46(ReluBackward0) => prune_in_channels on net.backbone.layer1.0.conv2 (Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)), len(idxs)=1
+--------------------------------
+
+layer1[0].conv3: 18 зависимостей
+
+--------------------------------
+          Pruning Group
+--------------------------------
+[0] prune_out_channels on net.backbone.layer1.0.conv3 (Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)) => prune_out_channels on net.backbone.layer1.0.conv3 (Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)), len(idxs)=1
+[1] prune_out_channels on net.backbone.layer1.0.conv3 (Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)) => prune_out_channels on net.backbone.layer1.0.bn3 (BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)), len(idxs)=1
+[2] prune_out_channels on net.backbone.layer1.0.bn3 (BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)) => prune_out_channels on _ElementWiseOp_42(AddBackward0), len(idxs)=1
+[3] prune_out_channels on _ElementWiseOp_42(AddBackward0) => prune_out_channels on net.backbone.layer1.0.downsample.1 (BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)), len(idxs)=1
+[4] prune_out_channels on _ElementWiseOp_42(AddBackward0) => prune_out_channels on _ElementWiseOp_41(ReluBackward0), len(idxs)=1
+[5] prune_out_channels on _ElementWiseOp_41(ReluBackward0) => prune_out_channels on _ElementWiseOp_40(AddBackward0), len(idxs)=1
+[6] prune_out_channels on _ElementWiseOp_41(ReluBackward0) => prune_in_channels on net.backbone.layer1.1.conv1 (Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)), len(idxs)=1
+[7] prune_out_channels on _ElementWiseOp_40(AddBackward0) => prune_out_channels on net.backbone.layer1.1.bn3 (BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)), len(idxs)=1
+[8] prune_out_channels on _ElementWiseOp_40(AddBackward0) => prune_out_channels on _ElementWiseOp_39(ReluBackward0), len(idxs)=1
+[9] prune_out_channels on _ElementWiseOp_39(ReluBackward0) => prune_out_channels on _ElementWiseOp_38(AddBackward0), len(idxs)=1
+[10] prune_out_channels on _ElementWiseOp_39(ReluBackward0) => prune_in_channels on net.backbone.layer1.2.conv1 (Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)), len(idxs)=1
+[11] prune_out_channels on _ElementWiseOp_38(AddBackward0) => prune_out_channels on net.backbone.layer1.2.bn3 (BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)), len(idxs)=1
+[12] prune_out_channels on _ElementWiseOp_38(AddBackward0) => prune_out_channels on _ElementWiseOp_37(ReluBackward0), len(idxs)=1
+[13] prune_out_channels on _ElementWiseOp_37(ReluBackward0) => prune_in_channels on net.backbone.layer2.0.downsample.0 (Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)), len(idxs)=1
+[14] prune_out_channels on _ElementWiseOp_37(ReluBackward0) => prune_in_channels on net.backbone.layer2.0.conv1 (Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)), len(idxs)=1
+[15] prune_out_channels on net.backbone.layer1.2.bn3 (BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)) => prune_out_channels on net.backbone.layer1.2.conv3 (Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)), len(idxs)=1
+[16] prune_out_channels on net.backbone.layer1.1.bn3 (BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)) => prune_out_channels on net.backbone.layer1.1.conv3 (Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)), len(idxs)=1
+[17] prune_out_channels on net.backbone.layer1.0.downsample.1 (BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)) => prune_out_channels on net.backbone.layer1.0.downsample.0 (Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)), len(idxs)=1
+--------------------------------
+
+ASPP, ветвь 3x3 r=12: 5 зависимостей
+
+--------------------------------
+          Pruning Group
+--------------------------------
+[0] prune_out_channels on net.classifier.0.convs.1.0 (Conv2d(2048, 256, kernel_size=(3, 3), stride=(1, 1), padding=(12, 12), dilation=(12, 12), bias=False)) => prune_out_channels on net.classifier.0.convs.1.0 (Conv2d(2048, 256, kernel_size=(3, 3), stride=(1, 1), padding=(12, 12), dilation=(12, 12), bias=False)), len(idxs)=1
+[1] prune_out_channels on net.classifier.0.convs.1.0 (Conv2d(2048, 256, kernel_size=(3, 3), stride=(1, 1), padding=(12, 12), dilation=(12, 12), bias=False)) => prune_out_channels on net.classifier.0.convs.1.1 (BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)), len(idxs)=1
+[2] prune_out_channels on net.classifier.0.convs.1.1 (BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)) => prune_out_channels on _ElementWiseOp_5(ReluBackward0), len(idxs)=1
+[3] prune_out_channels on _ElementWiseOp_5(ReluBackward0) => prune_out_channels on _ConcatOp_3([0, 256, 512, 768, 1024, 1280]), len(idxs)=1
+[4] prune_out_channels on _ConcatOp_3([0, 256, 512, 768, 1024, 1280]) => prune_in_channels on net.classifier.0.project.0 (Conv2d(1280, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)), len(idxs)=1
+--------------------------------
+
+Обнуление и удаление 50% каналов в каждой свёртке
+
+orig     | conv1.weight (64, 64, 1, 1)   | params  39.64M | ненулевых  39.64M |  107.8 GMACs |  38.2 мс
+zeroed   | conv1.weight (64, 64, 1, 1)   | params  39.64M | ненулевых  19.85M |  107.8 GMACs |  38.2 мс
+pruned   | conv1.weight (32, 32, 1, 1)   | params   9.93M | ненулевых   9.93M |   27.1 GMACs |  13.9 мс

@@ -27,15 +27,12 @@ OUT_DIR = Path("runs")
 
 def parse_args():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--train", choices=["lastlayer", "head", "full"], required=True,
-                    help="какая часть модели обучается")
-    ap.add_argument("--head-init", choices=["pretrained", "scratch"], default="pretrained",
-                    help="для --train head: голова с весами COCO или новая")
+    ap.add_argument("--train", choices=["lastlayer", "head", "full"], required=True)
+    ap.add_argument("--head-init", choices=["pretrained", "scratch"], default="pretrained")
     ap.add_argument("--loss", choices=["ce", "wce", "ce_lovasz"], default="ce")
-    ap.add_argument("--lr-pretrained", type=float, default=1e-4,
-                    help="LR предобученных слоёв, которые дообучаются")
+    ap.add_argument("--lr-pretrained", type=float, default=1e-4)
     ap.add_argument("--epochs", type=int, default=50)
-    ap.add_argument("--name", default=None, help="имя запуска (по умолчанию собирается из флагов)")
+    ap.add_argument("--name", default=None)
     args = ap.parse_args()
     assert args.head_init == "pretrained" or args.train == "head", \
         "--head-init scratch имеет смысл только с --train head"

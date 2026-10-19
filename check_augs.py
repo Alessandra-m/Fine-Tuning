@@ -64,7 +64,7 @@ def main(n_images=3, n_augs=3, n_value_checks=100):
               for k, name in enumerate(CLASSES + ["void"])]
     fig.legend(handles=legend, loc="lower center", ncol=6)
     fig.tight_layout(rect=(0, 0.06, 1, 1))
-    fig.savefig("3/result/augs_check.png", dpi=90)
+    fig.savefig("result/augs_check.png", dpi=90)
     print("Сохранено: augs_check.png")
 
 

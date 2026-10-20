@@ -1,0 +1,51 @@
+  3 слоёв | net.classifier.1
+  3 слоёв | net.classifier.0.project.0
+  3 слоёв | net.classifier.0.convs.4.1
+ 15 слоёв | net.backbone.layer4.0.downsample.0
+ 21 слоёв | net.backbone.layer3.0.downsample.0
+ 15 слоёв | net.backbone.layer2.0.downsample.0
+ 12 слоёв | net.backbone.layer1.0.downsample.0
+  4 слоёв | net.backbone.conv1
+  3 слоёв | net.backbone.layer1.0.conv2
+  3 слоёв | net.backbone.layer1.0.conv1
+  3 слоёв | net.backbone.layer1.1.conv2
+  3 слоёв | net.backbone.layer1.1.conv1
+  3 слоёв | net.backbone.layer1.2.conv2
+  3 слоёв | net.backbone.layer1.2.conv1
+  3 слоёв | net.backbone.layer2.0.conv2
+  3 слоёв | net.backbone.layer2.0.conv1
+  3 слоёв | net.backbone.layer2.1.conv2
+  3 слоёв | net.backbone.layer2.1.conv1
+  3 слоёв | net.backbone.layer2.2.conv2
+  3 слоёв | net.backbone.layer2.2.conv1
+  3 слоёв | net.backbone.layer2.3.conv2
+  3 слоёв | net.backbone.layer2.3.conv1
+  3 слоёв | net.backbone.layer3.0.conv2
+  3 слоёв | net.backbone.layer3.0.conv1
+  3 слоёв | net.backbone.layer3.1.conv2
+  3 слоёв | net.backbone.layer3.1.conv1
+  3 слоёв | net.backbone.layer3.2.conv2
+  3 слоёв | net.backbone.layer3.2.conv1
+  3 слоёв | net.backbone.layer3.3.conv2
+  3 слоёв | net.backbone.layer3.3.conv1
+  3 слоёв | net.backbone.layer3.4.conv2
+  3 слоёв | net.backbone.layer3.4.conv1
+  3 слоёв | net.backbone.layer3.5.conv2
+  3 слоёв | net.backbone.layer3.5.conv1
+  3 слоёв | net.backbone.layer4.0.conv2
+  3 слоёв | net.backbone.layer4.0.conv1
+  3 слоёв | net.backbone.layer4.1.conv2
+  3 слоёв | net.backbone.layer4.1.conv1
+  3 слоёв | net.backbone.layer4.2.conv2
+  3 слоёв | net.backbone.layer4.2.conv1
+  3 слоёв | net.classifier.0.convs.3.0
+  3 слоёв | net.classifier.0.convs.2.0
+  3 слоёв | net.classifier.0.convs.1.0
+  3 слоёв | net.classifier.0.convs.0.0
+
+Всего групп: 44
+  по  3 слоёв: 39 групп
+  по  4 слоёв: 1 групп
+  по 12 слоёв: 1 групп
+  по 15 слоёв: 2 групп
+  по 21 слоёв: 1 групп

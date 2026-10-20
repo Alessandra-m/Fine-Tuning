@@ -37,6 +37,7 @@
 ├── plot_curves.py           #           кривые обучения
 │
 ├── prune_explore.py         # задача 2: группы зависимостей, обнуление против удаления
+├── prune_groups.py          #           все группы зависимостей модели
 └── prune.py                 #           прунинг с заданной долей каналов
 ```
 
@@ -74,6 +75,7 @@ python3 plot_curves.py
 
 ```bash
 python3 prune_explore.py 2>&1 | tee logs/pruning/prune_explore.log
+python3 prune_groups.py  2>&1 | tee logs/pruning/prune_groups.log
 
 for R in 0.3 0.5; do
   NAME=full_ce_lovasz_e50_prune_l2_r$R

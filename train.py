@@ -39,7 +39,6 @@ def parse_args():
 
 
 def lr_token(lr):
-    """1e-4 -> '1e-4', 0.001 -> '1e-3'."""
     mant, exp = f"{lr:.0e}".split("e")
     return f"{mant}e{int(exp)}"
 
